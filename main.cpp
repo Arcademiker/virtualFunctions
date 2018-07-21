@@ -37,6 +37,16 @@ public:
     }
 };
 
+class D : public C {
+public:
+    D(int start) : C(start) {
+        test = start;
+    }
+    void move() override {
+        this->test = this->test*2;
+    }
+};
+
 class collection {
 private:
     std::vector<A*> Alist;
@@ -53,13 +63,16 @@ int main() {
     collection mycollection;
     B b(3);
     C c(2);
-    A a(1);
+    A a(7);
+    D d(5);
     mycollection.add(&b);
     mycollection.add(&c);
     mycollection.add(&a);
-    std::cout << mycollection.get(0)->get_test() << " " << mycollection.get(1)->get_test() << " " << mycollection.get(2)->get_test() << std::endl;
+    mycollection.add(&d);
+    std::cout << mycollection.get(0)->get_test() << " " << mycollection.get(1)->get_test() << " " << mycollection.get(2)->get_test() << " " << mycollection.get(3)->get_test() << std::endl;
     mycollection.get(0)->move();
     mycollection.get(1)->move();
     mycollection.get(2)->move();
-    std::cout << mycollection.get(0)->get_test() << " " << mycollection.get(1)->get_test() << " " << mycollection.get(2)->get_test() << std::endl;
+    mycollection.get(3)->move();
+    std::cout << mycollection.get(0)->get_test() << " " << mycollection.get(1)->get_test() << " " << mycollection.get(2)->get_test() << " " << mycollection.get(3)->get_test() << std::endl;
 }
