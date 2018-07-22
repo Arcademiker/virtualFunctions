@@ -4,6 +4,7 @@
 class A {
 protected:
     int test;
+    int type;
 
 public:
     virtual void move() { // or pure virtual = 0
@@ -20,7 +21,7 @@ public:
 class B : public A {
 public:
     B(int start) : A(start) {
-        test = start;
+        //test = start;
     }
     void move() override {
         this->test = this->test+1;
@@ -30,20 +31,24 @@ public:
 class C : public A {
 public:
     C(int start) : A(start) {
-        test = start;
+        //test = start;
     }
     void move() override {
         this->test = this->test-1;
     }
+    virtual void jump() {}
 };
 
 class D : public C {
 public:
     D(int start) : C(start) {
-        test = start;
+        //test = start;
     }
     void move() override {
         this->test = this->test*2;
+    }
+    void jump() override {
+        this->test = -this->test;
     }
 };
 
